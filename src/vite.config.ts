@@ -1,23 +1,19 @@
-import tailwindcss from '@tailwindcss/vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
 import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 
-export default defineConfig(() => {
-  return {
-    plugins: [
-      react({
-        jsxRuntime: 'automatic', // Forces automatic React runtime compilation
-      }),
-      tailwindcss(),
-    ],
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, '.'),
-      },
-    },
-    esbuild: {
-      jsx: 'automatic', // Ensures esbuild transpile target uses the modern jsx runtime
-    },
-  };
+export default defineConfig({
+  plugins: [
+    react({
+      jsxRuntime: 'automatic',
+    }),
+    tailwindcss(),
+  ],
+  esbuild: {
+    jsx: 'automatic',
+  },
+  server: {
+    port: 3000,
+    host: '0.0.0.0',
+  }
 });
